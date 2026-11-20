@@ -5,7 +5,7 @@ set -e
 setterm -blank 0 -powerdown 0 2>/dev/null || true
 printf '\033[9;0]' 2>/dev/null || true
 
-RAW_SLUG="${REPO_SLUG:-ilyamiro/serpantinum}"
+RAW_SLUG="${REPO_SLUG:-Pa-cho/serpantinum-dolphin}"
 REPO_SLUG="$(printf '%s' "$RAW_SLUG" | tr -d '\r\n\t ' | sed 's/[^a-zA-Z0-9_\/-]//g')"
 CACHE_BASE="${XDG_CACHE_HOME:-$HOME/.cache}/serpantinum-installer"
 export REPO_SLUG
@@ -57,7 +57,7 @@ MODULES_DIR="$INSTALL_DIR/modules"
 source "$PROJECT_ROOT/src/scripts/i18n.sh"
 source "$MODULES_DIR/pm.sh"
 source "$MODULES_DIR/deps.sh"
-source "$MODULES_DIR/ski.sh"
+source "$MODULES_DIR/dolphin.sh"
 source "$MODULES_DIR/daemons.sh"
 source "$MODULES_DIR/audio.sh"
 source "$MODULES_DIR/gamma.sh"
@@ -102,7 +102,7 @@ elif [[ "$INSTALL_STATE" == "fresh" || "$IS_REINSTALL" == true ]]; then
 fi
 
 install_dependencies "$INSTALL_STATE" "$IS_REINSTALL" "${SELECTED_COMPOSITORS[@]}"
-install_ski
+install_dolphin
 install_audio_daemon
 install_gamma_daemon
 install_core_daemon
@@ -113,7 +113,7 @@ install_wallpapers "$INSTALL_FULL_WALLPAPERS"
 
 WALLPAPER_DIR=$(get_wallpaper_dir)
 init_serpantinum_config "$PROJECT_ROOT" "$WALLPAPER_DIR" "$INSTALL_STATE" "$IS_REINSTALL"
-configure_ski_defaults
+configure_dolphin_defaults
 
 setup_services
 hand_over_from_easyeffects
